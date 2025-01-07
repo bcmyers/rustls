@@ -99,7 +99,7 @@ fn tls12_handshake_fragmented() {
         "Ok(TransmitTlsData)",
         "Ok(WriteTraffic)",
     ];
-    if provider_is_aws_lc_rs() {
+    if provider_is_aws_lc_rs() && cfg!(feature = "post-quantum") {
         // client hello is larger for X25519MLKEM768
         expected_client.splice(0..0, ["Ok(EncodeTlsData)", "Ok(EncodeTlsData)"]);
         expected_server.splice(0..0, ["Ok(BlockedHandshake)", "Ok(BlockedHandshake)"]);
@@ -190,7 +190,7 @@ fn tls13_handshake_fragmented() {
         "Ok(WriteTraffic)",
     ];
 
-    if provider_is_aws_lc_rs() {
+    if provider_is_aws_lc_rs() && cfg!(feature = "post-quantum") {
         // client hello is larger for X25519MLKEM768
         expected_client.splice(0..0, ["Ok(EncodeTlsData)", "Ok(EncodeTlsData)"]);
         expected_server.splice(0..0, ["Ok(BlockedHandshake)", "Ok(BlockedHandshake)"]);

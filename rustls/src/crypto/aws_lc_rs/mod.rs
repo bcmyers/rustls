@@ -237,10 +237,13 @@ pub mod kx_group {
 /// This does not contain MLKEM768; by default MLKEM768 is only offered
 /// in hybrid with X25519.
 pub static DEFAULT_KX_GROUPS: &[&dyn SupportedKxGroup] = &[
+    #[cfg(feature = "post-quantum")]
     kx_group::X25519MLKEM768,
     kx::ALL_KX_GROUPS[0],
     kx::ALL_KX_GROUPS[1],
     kx::ALL_KX_GROUPS[2],
+    #[cfg(not(feature = "post-quantum"))]
+    kx_group::X25519MLKEM768,
 ];
 
 /// A list of all the key exchange groups supported by this provider.

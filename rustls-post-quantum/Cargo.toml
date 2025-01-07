@@ -12,7 +12,7 @@ categories = ["network-programming", "cryptography"]
 autobenches = false
 
 [dependencies]
-rustls = { version = "0.23.21", features = ["aws_lc_rs"], path = "../rustls" }
+rustls = { version = "0.23.21", features = ["aws_lc_rs", "post-quantum"], path = "../rustls" }
 
 [dev-dependencies]
 env_logger = "0.11"
