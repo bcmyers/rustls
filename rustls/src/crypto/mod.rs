@@ -259,26 +259,7 @@ impl CryptoProvider {
     /// In all cases the application should explicitly specify the provider to use
     /// with [`CryptoProvider::install_default`].
     fn from_crate_features() -> Option<Self> {
-        #[cfg(all(
-            feature = "ring",
-            not(feature = "aws_lc_rs"),
-            not(feature = "custom-provider")
-        ))]
-        {
-            return Some(ring::default_provider());
-        }
-
-        #[cfg(all(
-            feature = "aws_lc_rs",
-            not(feature = "ring"),
-            not(feature = "custom-provider")
-        ))]
-        {
-            return Some(aws_lc_rs::default_provider());
-        }
-
-        #[allow(unreachable_code)]
-        None
+        Some(aws_lc_rs::default_provider())
     }
 
     /// Returns `true` if this `CryptoProvider` is operating in FIPS mode.

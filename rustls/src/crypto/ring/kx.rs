@@ -70,7 +70,7 @@ impl SupportedKxGroup for KxGroup {
     }
 
     fn fips(&self) -> bool {
-        self.fips_allowed && super::fips()
+        self.fips_allowed
     }
 }
 

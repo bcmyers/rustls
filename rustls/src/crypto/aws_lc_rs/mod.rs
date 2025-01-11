@@ -48,6 +48,13 @@ pub fn default_provider() -> CryptoProvider {
 }
 
 fn default_kx_groups() -> Vec<&'static dyn SupportedKxGroup> {
+    let to_print = ALL_KX_GROUPS
+        .iter()
+        .map(|cs| (cs, cs.fips()))
+        .collect::<Vec<_>>();
+    #[cfg(feature = "std")]
+    std::println!("rustls: kx groups: {:#?}", to_print);
+
     #[cfg(feature = "fips")]
     {
         ALL_KX_GROUPS
